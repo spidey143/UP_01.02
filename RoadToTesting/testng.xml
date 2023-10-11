@@ -2,25 +2,28 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Example suite">
+    <parameter name="a" value="1"/>
+    <parameter name="b" value="2"/>
+    <parameter name="c" value="3"/>
     <test name="test1">
         <classes>
-            <class name="Base.BaseTest">
+            <class name="base.BaseTest">
                 <methods>
                     <include name="beforeT"/>
                 </methods>
             </class>
-            <class name="ExampleTests"/>
+            <class name="DisckTests"/>
         </classes>
     </test>
     <test name="test2">
         <classes>
-            <class name="Base.BaseTest">
+            <class name="base.BaseTest">
                 <methods>
                     <include name="beforeT"/>
                     <include name="afterT"/>
                 </methods>
             </class>
-            <class name="Example2"/>
+            <class name="PhoneTests"/>
         </classes>
     </test>
 </suite>

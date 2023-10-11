@@ -1,11 +1,10 @@
-package Steps;
+package steps;
 
-import Main.SomeClass;
 import io.qameta.allure.Step;
 
 import java.util.Random;
 
-public class StrSteps {
+public class PhoneSteps {
     @Step("Генерация номера телефона")
     public static String generatePhone() {
         StringBuilder phone = new StringBuilder("+7(");

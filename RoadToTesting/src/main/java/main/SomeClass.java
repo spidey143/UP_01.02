@@ -1,6 +1,4 @@
-package Main;
-
-import Steps.DiscSteps;
+package main;
 
 public class SomeClass {
     public static int disc(int a, int b, int c){

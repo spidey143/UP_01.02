@@ -1,7 +1,7 @@
-package Steps;
+package steps;
 
 import io.qameta.allure.Step;
-import Main.SomeClass;
+import main.SomeClass;
 
 public class DiscSteps {
     @Step("вызов функции дискриминанта")
