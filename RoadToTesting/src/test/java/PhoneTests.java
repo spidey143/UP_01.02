@@ -23,12 +23,12 @@ public class PhoneTests {
     @Test(testName = "Тест номера телефона №1")
     public static void testPhoneOne() {
         String regex = "^(\\+7|8)[\\s-]?\\(?\\d{3}\\)?[\\s-]?\\d{3}[\\s-]?\\d{2}[\\s-]?\\d{2}$";
-        Assert.assertTrue(PhoneSteps.generatePhone().matches(regex));
+        Assert.assertTrue(PhoneSteps.generatePhoneStep().matches(regex));
     }
 
     @Test(testName = "Тест номера телефона №2", expectedExceptions = AssertionError.class)
     public static void testPhoneTwo() {
         String regex = "^(\\+8)[\\s-]?\\(?\\d{3}\\)?[\\s-]?\\d{3}[\\s-]?\\d{2}[\\s-]?\\d{2}$";
-        Assert.assertTrue(PhoneSteps.generatePhone().matches(regex));
+        Assert.assertTrue(PhoneSteps.generatePhoneStep().matches(regex));
     }
 }
