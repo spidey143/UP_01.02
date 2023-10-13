@@ -1,3 +1,4 @@
+import org.testng.annotations.Parameters;
 import steps.PhoneSteps;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -21,14 +22,14 @@ public class PhoneTests {
     }
 
     @Test(testName = "Тест номера телефона №1")
-    public static void testPhoneOne() {
-        String regex = "^(\\+7|8)[\\s-]?\\(?\\d{3}\\)?[\\s-]?\\d{3}[\\s-]?\\d{2}[\\s-]?\\d{2}$";
-        Assert.assertTrue(PhoneSteps.generatePhoneStep().matches(regex));
+    @Parameters({"regex1"})
+    public static void testPhoneOne(String regex) {
+        PhoneSteps.checkPhoneAtTemplate(regex);
     }
 
     @Test(testName = "Тест номера телефона №2", expectedExceptions = AssertionError.class)
-    public static void testPhoneTwo() {
-        String regex = "^(\\+8)[\\s-]?\\(?\\d{3}\\)?[\\s-]?\\d{3}[\\s-]?\\d{2}[\\s-]?\\d{2}$";
-        Assert.assertTrue(PhoneSteps.generatePhoneStep().matches(regex));
+    @Parameters({"regex2"})
+    public static void testPhoneTwo(String regex) {
+        PhoneSteps.checkPhoneAtTemplate(regex);
     }
 }

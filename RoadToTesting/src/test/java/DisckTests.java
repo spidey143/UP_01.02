@@ -1,3 +1,4 @@
+import io.qameta.allure.Allure;
 import steps.DiscSteps;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -21,14 +22,14 @@ public class DisckTests {
 
     @Test(testName = "Тест дискриминанта №1")
     @Parameters({"a", "b", "c"})
-    public static void testDiscOne(int a, int b, int c ) {
-        Assert.assertEquals(DiscSteps.stepOne(a, b, c), -8);
+    public static void testDiscOne(int a, int b, int c) {
+        DiscSteps.checkDiscResult(a,b,c,-8);
     }
 
     @Test(testName = "Тест дискриминанта №2", expectedExceptions = AssertionError.class)
     @Parameters({"a", "b", "c"})
     public static void testDiscTwo(int a, int b, int c) {
-        Assert.assertEquals(DiscSteps.stepOne(a, b, c), -4);
+        DiscSteps.checkDiscResult(a,b,c,-4);
     }
 
 }
