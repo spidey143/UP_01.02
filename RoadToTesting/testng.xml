@@ -28,4 +28,9 @@
             <class name="PhoneTests"/>
         </classes>
     </test>
+    <test name="UserTest">
+        <classes>
+            <class name="UserTests"/>
+        </classes>
+    </test>
 </suite>

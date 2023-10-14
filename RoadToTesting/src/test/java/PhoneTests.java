@@ -3,15 +3,13 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.testng.annotations.*;
 import steps.PhoneSteps;
-import org.testng.Assert;
 import org.testng.xml.XmlTest;
 
-import javax.management.DescriptorKey;
 import java.lang.reflect.Method;
 
 @Epic("Тестовая Группа №2")
 @Feature("Тесты номера телефона")
-public class PhoneTests {
+public class PhoneTests{
     @BeforeClass
     public void beforeC(XmlTest xmlTest) {
         System.out.println("<" + getClass().getSimpleName() + ">");

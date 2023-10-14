@@ -6,11 +6,11 @@ import org.testng.Assert;
 
 public class DiscSteps {
     @Step(value = "вызов функции дискриминанта")
-    public static int callDisc(int a, int b, int c) {
+    public static Integer callDisc(Integer a, Integer b, Integer c) {
         return SomeClass.disc(a,b,c);
     }
     @Step(value = "Проверка на результат дискриминината")
-    public static void checkDiscResult(int a, int b, int c, int n){
+    public static void checkDiscResult(Integer a, Integer b, Integer c, Integer n){
         Assert.assertEquals(callDisc(a,b,c), n, "ОшибОчка!");
     }
 }

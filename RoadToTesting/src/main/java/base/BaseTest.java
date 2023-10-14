@@ -1,7 +1,6 @@
 package base;
 
 import org.testng.annotations.*;
-
 public class BaseTest {
     @BeforeSuite
     public static void beforeSuite() {
