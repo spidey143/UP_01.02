@@ -13,8 +13,8 @@ public class UserTests {
     }
 
     @Test(testName = "Проверка списка пользователей", description = "Проверка списка пользователей")
-    @Description("Проверка списка пользователей")
-    public static void userTestOne() {
+    @Description("Проверка списка пользователей на всякую поебень")
+    public static void usersListTestOne() {
         UserSteps.checkUsersListIsEmpty();
         UserSteps.findUser();
         UserSteps.checkValidUser();

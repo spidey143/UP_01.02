@@ -2,6 +2,7 @@ package steps;
 
 import io.qameta.allure.Step;
 import org.testng.Assert;
+import utils.MyAsserts;
 import utils.PhoneGenerator;
 
 public class PhoneSteps {
@@ -12,6 +13,6 @@ public class PhoneSteps {
 
     @Step("Проверка номера телефона на соответсвие шаблону")
     public static void checkPhoneAtTemplate(String regex) {
-        Assert.assertTrue(generatePhone().matches(regex), "ОшибОчка!");
+        MyAsserts.myAssertTrue(generatePhone().matches(regex), "Номер телефона не соотвествует шаблону!");
     }
 }
