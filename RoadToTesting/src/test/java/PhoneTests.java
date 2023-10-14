@@ -1,9 +1,6 @@
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import steps.PhoneSteps;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 import org.testng.xml.XmlTest;
 
 import java.lang.reflect.Method;
@@ -27,9 +24,14 @@ public class PhoneTests {
         PhoneSteps.checkPhoneAtTemplate(regex);
     }
 
-    @Test(testName = "Тест номера телефона №2", expectedExceptions = AssertionError.class)
+    @Test(testName = "Тест номера телефона №2")
     @Parameters({"regex2"})
     public static void testPhoneTwo(String regex) {
         PhoneSteps.checkPhoneAtTemplate(regex);
+    }
+
+    @AfterClass
+    public void afterC(XmlTest xmlTest) {
+        System.out.println("End Testing Class: " + "<" + getClass().getSimpleName() + ">");
     }
 }

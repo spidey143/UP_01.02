@@ -1,8 +1,7 @@
 package main;
 
 public class SomeClass {
-    public static int disc(int a, int b, int c){
-
-        return (int) Math.pow(b, 2) - 4 * a * c;
+    public static Integer disc(Integer a, Integer b, Integer c) {
+        return b * b - 4 * a * c;
     }
 }

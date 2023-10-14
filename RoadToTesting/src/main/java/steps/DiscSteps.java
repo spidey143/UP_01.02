@@ -11,6 +11,6 @@ public class DiscSteps {
     }
     @Step(value = "Проверка на результат дискриминината")
     public static void checkDiscResult(int a, int b, int c, int n){
-        Assert.assertEquals(callDisc(a,b,c), n);
+        Assert.assertEquals(callDisc(a,b,c), n, "ОшибОчка!");
     }
 }

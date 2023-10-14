@@ -26,10 +26,14 @@ public class DisckTests {
         DiscSteps.checkDiscResult(a,b,c,-8);
     }
 
-    @Test(testName = "Тест дискриминанта №2", expectedExceptions = AssertionError.class)
+    @Test(testName = "Тест дискриминанта №2")
     @Parameters({"a", "b", "c"})
     public static void testDiscTwo(int a, int b, int c) {
-        DiscSteps.checkDiscResult(a,b,c,-4);
+        DiscSteps.checkDiscResult(a,b,c,-8);
     }
 
+    @AfterClass
+    public void afterC(XmlTest xmlTest) {
+        System.out.println("End Testing Class: " + "<" + getClass().getSimpleName() + ">");
+    }
 }

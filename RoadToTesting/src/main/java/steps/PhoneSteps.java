@@ -12,6 +12,6 @@ public class PhoneSteps {
 
     @Step("Проверка номера телефона на соответсвие шаблону")
     public static void checkPhoneAtTemplate(String regex) {
-        Assert.assertTrue(generatePhone().matches(regex));
+        Assert.assertTrue(generatePhone().matches(regex), "ОшибОчка!");
     }
 }
