@@ -1,30 +1,36 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.testng.annotations.*;
 import steps.PhoneSteps;
 import org.testng.Assert;
 import org.testng.xml.XmlTest;
 
+import javax.management.DescriptorKey;
 import java.lang.reflect.Method;
 
+@Epic("Тестовая Группа №2")
+@Feature("Тесты номера телефона")
 public class PhoneTests {
     @BeforeClass
-    //Выполняется перед запуском всех тестовых методов в классе
     public void beforeC(XmlTest xmlTest) {
         System.out.println("<" + getClass().getSimpleName() + ">");
     }
 
     @BeforeMethod
-    //Выполняется перед запуском каждого тестового метода
     public void beforeM(Method method) {
         System.out.println(method.getName());
     }
 
-    @Test(testName = "Тест номера телефона №1")
+    @Test(testName = "Тест номера телефона №1", description = "Тест номера телефона №1")
+    @Description("Позитивный тест")
     @Parameters({"regex1"})
     public static void testPhoneOne(String regex) {
         PhoneSteps.checkPhoneAtTemplate(regex);
     }
 
-    @Test(testName = "Тест номера телефона №2")
+    @Test(testName = "Тест номера телефона №2", description = "Тест номера телефона №2")
+    @Description("Негативный тест")
     @Parameters({"regex2"})
     public static void testPhoneTwo(String regex) {
         PhoneSteps.checkPhoneAtTemplate(regex);
