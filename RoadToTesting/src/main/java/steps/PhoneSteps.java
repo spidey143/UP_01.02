@@ -1,14 +1,13 @@
 package steps;
 
 import io.qameta.allure.Step;
-import org.testng.Assert;
+import utils.Generator;
 import utils.MyAsserts;
-import utils.PhoneGenerator;
 
 public class PhoneSteps {
     @Step("Генерация номера телефона")
     public static String generatePhone() {
-        return PhoneGenerator.generatePhone();
+        return Generator.generateRandomPhone();
     }
 
     @Step("Проверка номера телефона на соответсвие шаблону")

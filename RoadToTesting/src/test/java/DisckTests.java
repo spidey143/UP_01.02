@@ -8,7 +8,7 @@ import org.testng.xml.XmlTest;
 
 import java.lang.reflect.Method;
 
-@Epic("Группа тестов №1")
+@Epic("Тестовая группа №1")
 @Feature("Тесты дискриминанта")
 public class DisckTests{
 

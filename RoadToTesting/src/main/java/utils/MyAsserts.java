@@ -1,6 +1,6 @@
 package utils;
 
-public class MyAsserts {
+public class MyAsserts{
     public static void myAssertTrue(boolean condition, String message) {
         if (!condition) {
             throw new AssertionError(message);
