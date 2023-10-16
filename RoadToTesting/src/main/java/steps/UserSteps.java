@@ -1,6 +1,7 @@
 package steps;
 
 import io.qameta.allure.Step;
+import lombok.Data;
 import model.User;
 import utils.MyAsserts;
 import utils.Generator;
@@ -13,31 +14,16 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 public class UserSteps {
-    public static List<User> usersList = new ArrayList<>();
-
-    @Step("добавление пользователей в список")
-    public static void addUsers() {
-        for (int i = 0; i < 5; i++) {
-            if (i == 3) {
-                usersList.add(new User("Danya", Generator.generateRandomPassword(6),
-                        "danya@example.com", Generator.generateRandomPhone()));
-            }
-            usersList.add(new User(Generator.generateRandomString(4),
-                    Generator.generateRandomPassword(6),
-                    Generator.generateRandomString(8) + "@example.com",
-                    Generator.generateRandomPhone()
-            ));
-        }
-    }
+    public static List<User> users = new ArrayList<>();
 
     @Step("Проверка что список пользоватей не пустой")
     public static void checkUsersListIsEmpty(){
-        MyAsserts.myAssertTrue(!usersList.isEmpty(), "Список пользователей пуст!");
+        MyAsserts.myAssertTrue(!users.isEmpty(), "Список пользователей пуст!");
     }
 
     @Step("Проверяем что пользователь с указанным логином есть в списке")
     public static User findUser(String login){
-        Optional<User> userOptional = usersList.stream().filter(us -> us.getLogin().equals(login)).findFirst();
+        Optional<User> userOptional = users.stream().filter(us -> us.getLogin().equals(login)).findFirst();
         return userOptional.orElse(null);
     }
 
