@@ -11,18 +11,18 @@ public class UserListSteps {
     public static List<User> users = new ArrayList<>();
 
     @Step("Проверка что список пользоватей не пустой")
-    public static void checkUsersListIsEmpty(){
+    public void checkUsersListIsEmpty(){
         MyAsserts.myAssertTrue(!users.isEmpty(), "Список пользователей пуст!");
     }
 
     @Step("Проверяем что пользователь с указанным логином есть в списке")
-    public static User findUser(String login){
+    public User findUser(String login){
         Optional<User> userOptional = users.stream().filter(us -> us.getLogin().equals(login)).findFirst();
         return userOptional.orElse(null);
     }
 
     @Step("Проверяем на валидность номер телефона и почту пользователя")
-    public static void checkValidUser(User user){
+    public void checkValidUser(User user){
         MyAsserts.myAssertTrue(user != null, "Такого пользователя нет в списке!");
         String regex = "^\\+7\\(\\d{3}\\)\\d{3}-\\d{2}-\\d{2}$";
         MyAsserts.myAssertTrue(user.getEmail().contains("@example.com"), "Невалидная почта!");

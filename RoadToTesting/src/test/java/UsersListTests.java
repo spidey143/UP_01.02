@@ -1,9 +1,11 @@
+import base.BaseTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import model.User;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import steps.Steps;
 import steps.UserListSteps;
 import utils.Generator;
 
@@ -11,7 +13,7 @@ import java.util.List;
 
 @Epic("Тестовая группа №3")
 @Feature("Тесты списка пользователей")
-public class UsersListTests {
+public class UsersListTests extends BaseTest implements Steps {
     public static List<User> usersList = UserListSteps.users;
     @BeforeClass
     //Добавление пользователей в список
@@ -30,18 +32,18 @@ public class UsersListTests {
     }
 
     @Test(testName = "Проверка списка пользователей", description = "Проверка списка пользователей")
-    @Description("Проверка списка пользователей на всякую поебень")
+    @Description("Проверка списка пользователей")
     public static void usersListTestOne() {
-        UserListSteps.checkUsersListIsEmpty();
-        User user = UserListSteps.findUser("Danya");
-        UserListSteps.checkValidUser(user);
+        USER_LIST_STEPS.checkUsersListIsEmpty();
+        User user = USER_LIST_STEPS.findUser("Danya");
+        USER_LIST_STEPS.checkValidUser(user);
     }
 
     @Test(testName = "Проверка списка пользователей", description = "Проверка списка пользователей")
     @Description("Проверка списка пользователей на всякую поебень")
     public static void usersListTestTwo() {
-        UserListSteps.checkUsersListIsEmpty();
-        User user = UserListSteps.findUser("Denis");
-        UserListSteps.checkValidUser(user);
+        USER_LIST_STEPS.checkUsersListIsEmpty();
+        User user = USER_LIST_STEPS.findUser("Denis");
+        USER_LIST_STEPS.checkValidUser(user);
     }
 }
