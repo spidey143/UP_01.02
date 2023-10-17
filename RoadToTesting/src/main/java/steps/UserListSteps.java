@@ -1,19 +1,13 @@
 package steps;
 
 import io.qameta.allure.Step;
-import lombok.Data;
 import model.User;
 import utils.MyAsserts;
-import utils.Generator;
-import utils.Generator;
-import utils.Generator;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
-public class UserSteps {
+public class UserListSteps {
     public static List<User> users = new ArrayList<>();
 
     @Step("Проверка что список пользоватей не пустой")
@@ -27,7 +21,7 @@ public class UserSteps {
         return userOptional.orElse(null);
     }
 
-    @Step("Проверяем валидность данных пользователя")
+    @Step("Проверяем на валидность номер телефона и почту пользователя")
     public static void checkValidUser(User user){
         MyAsserts.myAssertTrue(user != null, "Такого пользователя нет в списке!");
         String regex = "^\\+7\\(\\d{3}\\)\\d{3}-\\d{2}-\\d{2}$";

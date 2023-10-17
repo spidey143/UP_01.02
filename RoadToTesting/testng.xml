@@ -33,4 +33,9 @@
             <class name="UsersListTests"/>
         </classes>
     </test>
+    <test name="test4">
+        <classes>
+            <class name="UserPasswordTests"/>
+        </classes>
+    </test>
 </suite>

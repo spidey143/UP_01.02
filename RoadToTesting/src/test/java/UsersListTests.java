@@ -4,16 +4,15 @@ import io.qameta.allure.Feature;
 import model.User;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import steps.UserSteps;
+import steps.UserListSteps;
 import utils.Generator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Epic("Тестовая группа №3")
 @Feature("Тесты списка пользователей")
 public class UsersListTests {
-    public static List<User> usersList = UserSteps.users;
+    public static List<User> usersList = UserListSteps.users;
     @BeforeClass
     //Добавление пользователей в список
     public static void bfUser() {
@@ -33,8 +32,16 @@ public class UsersListTests {
     @Test(testName = "Проверка списка пользователей", description = "Проверка списка пользователей")
     @Description("Проверка списка пользователей на всякую поебень")
     public static void usersListTestOne() {
-        UserSteps.checkUsersListIsEmpty();
-        User user = UserSteps.findUser("Danya");
-        UserSteps.checkValidUser(user);
+        UserListSteps.checkUsersListIsEmpty();
+        User user = UserListSteps.findUser("Danya");
+        UserListSteps.checkValidUser(user);
+    }
+
+    @Test(testName = "Проверка списка пользователей", description = "Проверка списка пользователей")
+    @Description("Проверка списка пользователей на всякую поебень")
+    public static void usersListTestTwo() {
+        UserListSteps.checkUsersListIsEmpty();
+        User user = UserListSteps.findUser("Denis");
+        UserListSteps.checkValidUser(user);
     }
 }
