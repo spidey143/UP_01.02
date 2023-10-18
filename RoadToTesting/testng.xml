@@ -12,7 +12,7 @@
                     <include name="beforeT"/>
                 </methods>
             </class>
-            <class name="DisckTests"/>
+            <class name="useless.DisckTests"/>
         </classes>
     </test>
     <test name="test2">
@@ -25,7 +25,7 @@
                     <include name="afterT"/>
                 </methods>
             </class>
-            <class name="PhoneTests"/>
+            <class name="useless.PhoneTests"/>
         </classes>
     </test>
     <test name="test3">

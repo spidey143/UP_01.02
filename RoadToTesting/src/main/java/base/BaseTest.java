@@ -1,7 +1,9 @@
 package base;
 
 import org.testng.annotations.*;
-public class BaseTest {
+import steps.Steps;
+
+public class BaseTest implements Steps {
     @BeforeSuite
     public static void beforeSuite() {
         System.out.print("//Suite Start//");

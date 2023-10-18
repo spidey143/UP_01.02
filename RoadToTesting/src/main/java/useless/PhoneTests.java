@@ -1,17 +1,17 @@
-import base.BaseTest;
+package useless;
+
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import steps.DiscSteps;
 import org.testng.annotations.*;
+import steps.PhoneSteps;
 import org.testng.xml.XmlTest;
 
 import java.lang.reflect.Method;
 
-@Epic("Тестовая группа №1")
-@Feature("Тесты дискриминанта")
-public class DisckTests{
-
+@Epic("Тестовая Группа №2")
+@Feature("Тесты номера телефона")
+public class PhoneTests{
     @BeforeClass
     public void beforeC(XmlTest xmlTest) {
         System.out.println("<" + getClass().getSimpleName() + ">");
@@ -22,18 +22,18 @@ public class DisckTests{
         System.out.println(method.getName());
     }
 
-    @Test(testName = "Тест дискриминанта №1", description = "Тест дискриминанта №1")
+    @Test(testName = "Тест номера телефона №1", description = "Тест номера телефона №1")
     @Description("Позитивный тест")
-    @Parameters({"a", "b", "c"})
-    public static void testDiscOne(Integer a, Integer b, Integer c) {
-        DiscSteps.checkDiscResult(a,b,c,-8);
+    @Parameters({"regex1"})
+    public static void testPhoneOne(String regex) {
+        PhoneSteps.checkPhoneAtTemplate(regex);
     }
 
-    @Test(testName = "Тест дискриминанта №2", description = "Тест дискриминанта №2")
+    @Test(testName = "Тест номера телефона №2", description = "Тест номера телефона №2")
     @Description("Негативный тест")
-    @Parameters({"a", "b", "c"})
-    public static void testDiscTwo(Integer a, Integer b, Integer c) {
-        DiscSteps.checkDiscResult(a,b,c,-4);
+    @Parameters({"regex2"})
+    public static void testPhoneTwo(String regex) {
+        PhoneSteps.checkPhoneAtTemplate(regex);
     }
 
     @AfterClass

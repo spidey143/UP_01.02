@@ -13,7 +13,7 @@ import java.util.List;
 
 @Epic("Тестовая группа №3")
 @Feature("Тесты списка пользователей")
-public class UsersListTests extends BaseTest implements Steps {
+public class UsersListTests extends BaseTest {
     public static List<User> usersList = UserListSteps.users;
     @BeforeClass
     //Добавление пользователей в список

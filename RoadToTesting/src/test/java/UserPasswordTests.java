@@ -6,14 +6,13 @@ import model.User;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import steps.Steps;
-import steps.UserPasswordSteps;
 import utils.Generator;
 
 import java.util.Random;
 
 @Epic("Тестовая группа №4")
 @Feature("Тесты номера телефона пользователя")
-public class UserPasswordTests extends BaseTest implements Steps {
+public class UserPasswordTests extends BaseTest {
     public static User user = new User();
     @BeforeClass
     public static void bfC(){
