@@ -1,10 +1,8 @@
 package useless;
 
-import base.BaseTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import steps.DiscSteps;
 import org.testng.annotations.*;
 import org.testng.xml.XmlTest;
 

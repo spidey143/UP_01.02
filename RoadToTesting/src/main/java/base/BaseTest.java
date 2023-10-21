@@ -1,29 +1,19 @@
 package base;
 
+import api.Specification;
+import io.restassured.RestAssured;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import org.testng.annotations.*;
 import steps.Steps;
 
 public class BaseTest implements Steps {
-    @BeforeSuite
-    public static void beforeSuite() {
-        System.out.print("//Suite Start//");
-    }
 
-    @AfterSuite
-    public static void afterSuite() {
-        System.out.print("//Suite end//");
+    @BeforeMethod
+    public static void specificationConfiguring(){
+        RestAssured.baseURI = "https://reqres.in/api/";
+        RestAssured.requestSpecification = Specification.requestSpecification();
+        RestAssured.responseSpecification = Specification.responseSpecification(200);
     }
-
-    @BeforeTest
-    public static void beforeT() {
-        System.out.println();
-        System.out.print("Start Testing Class: ");
-    }
-
-    @AfterTest
-    public static void afterT() {
-        System.out.println("Tests Complete!");
-    }
-
 
 }

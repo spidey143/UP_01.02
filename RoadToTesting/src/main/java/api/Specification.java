@@ -6,14 +6,15 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
+import static io.restassured.RestAssured.baseURI;
+import static io.restassured.http.ContentType.JSON;
+
 public class Specification {
 
-    private final static String URL = "https://reqres.in/api/";
-
-    public static io.restassured.specification.RequestSpecification requestSpecification(){
+    public static RequestSpecification requestSpecification(){
       return new RequestSpecBuilder()
-              .setBaseUri(URL)
-              .setContentType(ContentType.JSON)
+              .setBaseUri(baseURI)
+              .setContentType(JSON)
               .build();
     }
 
@@ -22,6 +23,5 @@ public class Specification {
         return new ResponseSpecBuilder()
                 .expectStatusCode(code)
                 .build();
-
     }
 }

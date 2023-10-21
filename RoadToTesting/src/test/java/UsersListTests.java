@@ -5,8 +5,7 @@ import io.qameta.allure.Feature;
 import model.User;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import steps.Steps;
-import steps.UserListSteps;
+import useless.UserListSteps;
 import utils.Generator;
 
 import java.util.List;

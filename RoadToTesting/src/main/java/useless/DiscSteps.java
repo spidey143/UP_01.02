@@ -1,4 +1,4 @@
-package steps;
+package useless;
 
 import io.qameta.allure.Step;
 import main.SomeClass;

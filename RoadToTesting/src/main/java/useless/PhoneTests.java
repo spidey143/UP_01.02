@@ -4,7 +4,6 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.testng.annotations.*;
-import steps.PhoneSteps;
 import org.testng.xml.XmlTest;
 
 import java.lang.reflect.Method;
