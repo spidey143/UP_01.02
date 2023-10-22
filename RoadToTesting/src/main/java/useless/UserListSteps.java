@@ -1,7 +1,6 @@
 package useless;
 
 import io.qameta.allure.Step;
-import model.User;
 import utils.MyAsserts;
 import java.util.ArrayList;
 import java.util.List;

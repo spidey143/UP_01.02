@@ -13,7 +13,6 @@ public class BaseTest implements Steps {
     public static void specificationConfiguring(){
         RestAssured.baseURI = "https://reqres.in/api/";
         RestAssured.requestSpecification = Specification.requestSpecification();
-        RestAssured.responseSpecification = Specification.responseSpecification(200);
     }
 
 }

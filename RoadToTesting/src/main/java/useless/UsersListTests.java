@@ -1,11 +1,11 @@
+package useless;
+
 import base.BaseTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import model.User;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import useless.UserListSteps;
 import utils.Generator;
 
 import java.util.List;
