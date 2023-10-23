@@ -7,23 +7,22 @@ import model.requestModel.JobRequest;
 import model.requestModel.LoginRequest;
 import model.requestModel.RegisterRequest;
 import model.responseModel.*;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import java.util.Date;
 import java.util.List;
 
 public class ReqresTests extends BaseTest{
+
     @Test(testName ="GET List Users", description = "Проверка что аватар содержит id пользователя")
     @Story("GET requests")
-    public static void checkAvatarContainsdId() {
-        System.out.println(REQRES_STEPS.getUserListConsole());
-        List<ReqresUserData> userDataList = REQRES_STEPS.getUsersList();
-        REQRES_STEPS.checkAvatarsContainsId(userDataList);
+    public static void getUsersList() {
+        REQRES_STEPS.getUsersList();
     }
 
     @Test(testName ="GET Single Users",description = "Получить пользователя по его айди")
     @Story("GET requests")
     public void getUserById() {
-        UserResponse actualResponse = REQRES_STEPS.getUserById(2, 200);
         DataResponse dataResponse = new DataResponse(
                 2, "janet.weaver@reqres.in",
                 "Janet", "Weaver", "https://reqres.in/img/faces/2-image.jpg");
@@ -31,13 +30,13 @@ public class ReqresTests extends BaseTest{
                 "https://reqres.in/#support-heading",
                 "To keep ReqRes free, contributions towards server costs are appreciated!");
         UserResponse expectedResponse = new UserResponse(dataResponse, supportResponse);
-        REQRES_STEPS.checkUserValid(actualResponse, expectedResponse);
+        REQRES_STEPS.getUserById(2, 200, expectedResponse);
     }
 
     @Test(testName ="GET Single Users Not Found", description = "Получение несуществующего пользователя")
     @Story("GET requests")
     public static void getNotExistUser() {
-        REQRES_STEPS.getUserById(23, 404);
+        REQRES_STEPS.getUserById(23, 404, new UserResponse());
     }
 
     @Test(testName ="POST Create", description = "Создание пользователя",
@@ -45,10 +44,7 @@ public class ReqresTests extends BaseTest{
     @Story("POST requests")
     public void createUser(){
         JobRequest user = new JobRequest("morpheus", "leader");
-        JobResponse actualResponse = REQRES_STEPS.createUser(user);
-        JobResponse expectedResponse = new JobResponse(
-                "morpheus","leader", "47", new Date(20000), new Date(20000));
-        REQRES_STEPS.checkJobValid(expectedResponse, actualResponse);
+        REQRES_STEPS.createUser(user);
     }
 
     @Test(testName ="PUT Update", description = "Обновление пользователя")
@@ -77,30 +73,26 @@ public class ReqresTests extends BaseTest{
     @Story("POST requests")
     public static void registerSuccessful(){
         RegisterRequest registerRequest = new RegisterRequest("eve.holt@reqres.in", "pistol");
-        RegisterResponse registerResponse = REQRES_STEPS.registerUser(registerRequest, 200);
-        REQRES_STEPS.checkSuccessRegisterUser(registerResponse);
+        REQRES_STEPS.registerUser(registerRequest, 200);
     }
 
     @Test(testName ="POST Register-unsuccessful", description = "Провальная регистрация пользователя")
     @Story("POST requests")
     public static void registerUnSuccessful(){
         RegisterRequest registerRequest = new RegisterRequest("eve.holt@reqres.in");
-        RegisterResponse registerResponse = REQRES_STEPS.registerUser(registerRequest, 400);
-        REQRES_STEPS.checkUnSuccessRegisterUser(registerResponse);
+        REQRES_STEPS.registerUser(registerRequest, 400);
     }
 
     @Test(testName ="POST Login-successful", description = "Успешная авторизация пользователя")
     @Story("POST requests")
     public static void loginSuccessful(){
         LoginRequest loginRequest = new LoginRequest("eve.holt@reqres.in", "cityslicka");
-        LoginResponse loginResponse = REQRES_STEPS.loginUser(loginRequest, 200);
-        REQRES_STEPS.checkSuccessLoginUser(loginResponse);
+        REQRES_STEPS.loginUser(loginRequest, 200);
     }
     @Test(testName ="POST Login-unsuccessful", description = "Провальная авторизация пользователя")
     @Story("POST requests")
     public static void loginUnSuccessful(){
         LoginRequest loginRequest = new LoginRequest("eve.holt@reqres.in");
-        LoginResponse loginResponse = REQRES_STEPS.loginUser(loginRequest, 400);
-        REQRES_STEPS.checkUnSuccessLoginUser(loginResponse);
+        REQRES_STEPS.loginUser(loginRequest, 400);
     }
 }

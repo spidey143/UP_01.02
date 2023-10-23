@@ -16,6 +16,11 @@ public class JobResponse {
     public Date createdAt;
     public Date updatedAt;
 
+    public JobResponse(String name, String job) {
+        this.name = name;
+        this.job = job;
+    }
+
     public boolean equals(JobResponse otherJobResponse){
         return name.equals(otherJobResponse.name) && job.equals(otherJobResponse.job);
     }
