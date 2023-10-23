@@ -11,7 +11,7 @@ public class BaseTest implements Steps {
 
     @BeforeMethod
     public static void specificationConfiguring(){
-        RestAssured.baseURI = "https://reqres.in/api/";
+        RestAssured.baseURI = "https://reqres.in/";
         RestAssured.requestSpecification = Specification.requestSpecification();
     }
 
