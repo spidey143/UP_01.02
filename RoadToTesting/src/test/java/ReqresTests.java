@@ -57,8 +57,7 @@ public class ReqresTests extends BaseTest {
         REQRES_STEPS.getNotExistResource();
     }
 
-    @Test(testName = "POST Create", description = "Создание пользователя",
-            groups = "POST requests")
+    @Test(testName = "POST Create", description = "Создание пользователя")
     @Story("POST requests")
     public void createUser() {
         JobRequest user = new JobRequest("morpheus", "leader");
@@ -118,6 +117,6 @@ public class ReqresTests extends BaseTest {
     @Test(testName = "GET delayed RESPONSE", description = "Проверка что аватар содержит id пользователя")
     @Story("GET requests")
     public static void getDelayedResp() {
-        REQRES_STEPS.getUsersList();
+        REQRES_STEPS.getDelayUserList();
     }
 }

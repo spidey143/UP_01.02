@@ -51,7 +51,7 @@ public class ReqresSteps {
         UserResponse userResponse = given()
                 .when().spec(requestSpecification)
                 .get("api/users/" + id)
-                .then().spec(Specification.responseSpecification(code))
+                .then().log().all().spec(Specification.responseSpecification(code))
                 .extract().response().body().as(UserResponse.class);
         Assert.assertEquals(userResponse, expectedUserResponse);
     }
