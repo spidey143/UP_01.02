@@ -1,6 +1,8 @@
 
 import base.BaseTest;
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
@@ -87,6 +89,8 @@ public class ReqresTests extends BaseTest {
     }
 
     @Test(testName = "POST Register-successful", description = "Успешная регистрация пользователя")
+    @Epic("Uheffsdfsd")
+    @Feature("POST req")
     @Story("POST requests")
     public static void registerSuccessful() {
         RegisterRequest registerRequest = new RegisterRequest("eve.holt@reqres.in", "pistol");
