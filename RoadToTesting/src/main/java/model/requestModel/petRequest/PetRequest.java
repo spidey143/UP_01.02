@@ -11,6 +11,7 @@ import java.util.Locale;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PetRequest {
+    public Long id;
     public Category category;
     public String name;
     public ArrayList<String> photoUrls;

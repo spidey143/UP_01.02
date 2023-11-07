@@ -25,12 +25,12 @@ public class PetStoreSteps {
     }
 
     @Step
-    public void checkAddNewPet(PetResponse petResponse) {
+    public void checkPetAdded(PetResponse petResponse) {
         Assert.assertTrue(petResponse.id != 0);
     }
 
     @Step
-    public List<PetResponse> findPetsByStatus(String status) {
+    public List<PetResponse> getPetsByStatus(String status) {
         return given().spec(requestSpecification)
                 .when()
                 .get("https://petstore.swagger.io/v2/pet/findByStatus?status=" + status)
@@ -38,8 +38,35 @@ public class PetStoreSteps {
     }
 
     @Step
-    public void checkPetList(List<PetResponse> petResponseList){
+    public void checkPetsList(List<PetResponse> petResponseList) {
         petResponseList.forEach(p -> Assert.assertTrue(p.id != 0 & !p.name.isEmpty()));
+    }
+
+    @Step
+    public PetResponse getPetById(long id) {
+        return given().spec(requestSpecification)
+                .when()
+                .get("https://petstore.swagger.io/v2/pet/" + id)
+                .then().log().all().extract().response().body().as(PetResponse.class);
+    }
+
+    @Step
+    public void checkIsMyPet(PetResponse petResponse) {
+        Assert.assertEquals(petResponse.name, "doggie-corgi-super");
+    }
+
+    @Step
+    public void postPet(PetRequest pet) {
+        given().contentType(ContentType.JSON)
+              .when()
+              .body(pet)
+              .post("https://petstore.swagger.io/v2/pet/")
+              .then().statusCode(200).contentType(ContentType.JSON).log().all().extract().response().body().as(PetResponse.class);
+    }
+
+    @Step
+    public void checkPetUpdated(PetResponse pet) {
+        Assert.assertTrue()
     }
 
 }
