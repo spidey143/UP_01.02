@@ -3,6 +3,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import model.requestModel.petRequest.Category;
 import model.requestModel.petRequest.PetRequest;
 import model.requestModel.petRequest.Tag;
+import model.responseModel.ApiResponseModel;
 import model.responseModel.PetResponse;
 import org.testng.annotations.Test;
 
@@ -22,7 +23,7 @@ public class PetTests extends BaseTest {
         ArrayList<Tag> tags = new ArrayList<>();
         tags.add(tag);
         PetRequest petRequest = new PetRequest(category, "doggie-corgi-super", photoUrls, tags, "available");
-        PetResponse petResponse = PET_STORE_STEPS.addNewPet(petRequest);
+        PetResponse petResponse = PET_STORE_STEPS.postPetAdd(petRequest);
         petId = petResponse.id;
         PET_STORE_STEPS.checkPetAdded(petResponse);
     }
@@ -36,15 +37,12 @@ public class PetTests extends BaseTest {
     @Test
     public static void findPetByIdTest() {
         PetResponse petResponse = PET_STORE_STEPS.getPetById(petId);
-        PET_STORE_STEPS.checkIsMyPet(petResponse);
+        PET_STORE_STEPS.checkPetWasFoundRight(petResponse,"doggie-corgi-super");
     }
 
     @Test
     public void updatePetTest() {
-        PetRequest petRequest = new PetRequest(petId, "doggie-corgi-super", "available");
-        PET_STORE_STEPS.postPet(petRequest);
-        PET_STORE_STEPS.checkIsMyPet
-        PET_STORE_STEPS.checkPetUpdated(petsList, petRequest.name, petRequest.status);
-
+        ApiResponseModel response = PET_STORE_STEPS.postPetUpdate(petId,"1doggie-corgi-super1" , "sold");
+        PET_STORE_STEPS.checkPetUpdated(response, petId);
     }
 }

@@ -11,10 +11,14 @@ import java.util.Locale;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PetRequest {
-    public Long id;
     public Category category;
     public String name;
     public ArrayList<String> photoUrls;
     public ArrayList<Tag> tags;
     public String status;
+
+    public PetRequest(String name, String status) {
+        this.name = name;
+        this.status = status;
+    }
 }
