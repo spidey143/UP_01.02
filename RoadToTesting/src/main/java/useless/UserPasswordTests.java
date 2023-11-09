@@ -1,6 +1,6 @@
 package useless;
 
-import base.BaseTest;
+import base.ApiBaseTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -12,7 +12,7 @@ import java.util.Random;
 
 @Epic("Тестовая группа №4")
 @Feature("Тесты номера телефона пользователя")
-public class UserPasswordTests extends BaseTest {
+public class UserPasswordTests extends ApiBaseTest {
     public static User user = new User();
     @BeforeClass
     public static void bfC(){

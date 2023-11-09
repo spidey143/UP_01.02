@@ -1,4 +1,4 @@
-package model.requestModel.petRequest;
+package model.requestModel.reqresRequests;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tag {
-    public int id;
+public class JobRequest {
     public String name;
+    public String job;
 }

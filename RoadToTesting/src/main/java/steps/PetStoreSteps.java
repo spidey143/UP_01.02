@@ -1,15 +1,16 @@
 package steps;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
-import model.requestModel.petRequest.PetRequest;
-import model.responseModel.ApiResponseModel;
-import model.responseModel.PetResponse;
+import model.requestModel.petStoreRequests.OrderRequest;
+import model.requestModel.petStoreRequests.PetRequest;
+import model.responseModel.petStoreResponses.ApiResponseModel;
+import model.responseModel.petStoreResponses.OrderResponse;
+import model.responseModel.petStoreResponses.PetResponse;
 import org.testng.Assert;
 
 import java.util.List;
+import java.util.Objects;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.requestSpecification;
@@ -71,8 +72,32 @@ public class PetStoreSteps {
     }
 
     @Step
-    public void checkPetUpdated(ApiResponseModel apiResponseModel, Long id) {
+    public void checkApiResponse(ApiResponseModel apiResponseModel, Long id) {
         Assert.assertTrue(apiResponseModel.code == 200 && apiResponseModel.message.equals(String.valueOf(id)));
+    }
+
+    @Step
+    public ApiResponseModel deletePet(Long id) {
+        return given().headers("api_key", "apiapiGOGO")
+                .when()
+                .delete("https://petstore.swagger.io/v2/pet/" + id)
+                .then().log().all().extract().response().body().as(ApiResponseModel.class);
+    }
+
+
+    @Step
+    public OrderResponse postOrderForPurchasingPet(OrderRequest orderRequest) {
+       return given().contentType(ContentType.JSON)
+              .when().log().all()
+              .body(orderRequest)
+              .post("https://petstore.swagger.io/v2/order")
+              .then().statusCode(200).contentType(ContentType.JSON).log().all()
+              .extract().response().body().as(OrderResponse.class);
+    }
+
+    @Step
+    public void checkOrderPlaced(OrderResponse orderResponse, Long petId, String status) {
+        Assert.assertTrue(Objects.equals(orderResponse.id, petId) && orderResponse.status.equals(status));
     }
 
 }

@@ -1,11 +1,10 @@
-package model.responseModel;
+package model.responseModel.petStoreResponses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import model.requestModel.petRequest.Category;
-import model.requestModel.petRequest.Tag;
-import org.testng.annotations.Test;
+import model.requestModel.petStoreRequests.Category;
+import model.requestModel.petStoreRequests.Tag;
 
 import java.util.ArrayList;
 

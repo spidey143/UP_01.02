@@ -1,4 +1,4 @@
-package model.responseModel;
+package model.responseModel.petStoreResponses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

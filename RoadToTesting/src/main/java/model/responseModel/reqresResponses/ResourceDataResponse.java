@@ -1,4 +1,4 @@
-package model.responseModel;
+package model.responseModel.reqresResponses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

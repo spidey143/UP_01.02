@@ -1,5 +1,4 @@
-package model.requestModel;
-
+package model.requestModel.reqresRequests;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,11 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginRequest {
+public class RegisterRequest {
     public String email;
     public String password;
 
-    public LoginRequest(String email){
+    public RegisterRequest(String email){
         this.email = email;
     }
 }

@@ -1,6 +1,6 @@
 package useless;
 
-import base.BaseTest;
+import base.ApiBaseTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Epic("Тестовая группа №3")
 @Feature("Тесты списка пользователей")
-public class UsersListTests extends BaseTest {
+public class UsersListTests extends ApiBaseTest {
     public static List<User> usersList = UserListSteps.users;
     @BeforeClass
     //Добавление пользователей в список

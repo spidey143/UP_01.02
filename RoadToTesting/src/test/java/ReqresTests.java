@@ -1,20 +1,18 @@
 
-import base.BaseTest;
+import base.ApiBaseTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import io.restassured.RestAssured;
-import io.restassured.config.HttpClientConfig;
-import io.restassured.config.RestAssuredConfig;
-import model.ReqresUserData;
-import model.requestModel.JobRequest;
-import model.requestModel.LoginRequest;
-import model.requestModel.RegisterRequest;
-import model.responseModel.*;
+import model.requestModel.reqresRequests.JobRequest;
+import model.requestModel.reqresRequests.LoginRequest;
+import model.requestModel.reqresRequests.RegisterRequest;
+import model.responseModel.reqresResponses.DataResponse;
+import model.responseModel.reqresResponses.SupportResponse;
+import model.responseModel.reqresResponses.UserResponse;
 import org.testng.annotations.Test;
 
-public class ReqresTests extends BaseTest {
+public class ReqresTests extends ApiBaseTest {
 
     @Test(testName = "GET List Users", description = "Проверка что аватар содержит id пользователя")
     @Story("GET requests")

@@ -1,13 +1,14 @@
-package model.requestModel;
+package model.requestModel.petStoreRequests;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class JobRequest {
+@NoArgsConstructor
+public class Category {
+    public Integer id;
     public String name;
-    public String job;
 }

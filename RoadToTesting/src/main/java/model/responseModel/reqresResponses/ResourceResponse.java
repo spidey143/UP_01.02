@@ -1,13 +1,13 @@
-package model.responseModel;
+package model.responseModel.reqresResponses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class UserResponse {
-    public DataResponse data;
+@NoArgsConstructor
+public class ResourceResponse {
+    public ResourceDataResponse data;
     public SupportResponse support;
 }

@@ -2,13 +2,12 @@ package steps;
 
 import api.Specification;
 import io.qameta.allure.Step;
-import model.requestModel.JobRequest;
-import model.requestModel.LoginRequest;
-import model.requestModel.RegisterRequest;
-import model.responseModel.*;
+import model.requestModel.reqresRequests.JobRequest;
+import model.requestModel.reqresRequests.LoginRequest;
+import model.requestModel.reqresRequests.RegisterRequest;
+import model.responseModel.reqresResponses.*;
 import org.testng.Assert;
 
-import java.util.Collections;
 import java.util.List;
 
 import static io.restassured.RestAssured.*;
