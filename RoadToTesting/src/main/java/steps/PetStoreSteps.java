@@ -90,14 +90,27 @@ public class PetStoreSteps {
        return given().contentType(ContentType.JSON)
               .when().log().all()
               .body(orderRequest)
-              .post("https://petstore.swagger.io/v2/order")
+              .post("https://petstore.swagger.io/v2/store/order")
               .then().statusCode(200).contentType(ContentType.JSON).log().all()
               .extract().response().body().as(OrderResponse.class);
     }
 
     @Step
     public void checkOrderPlaced(OrderResponse orderResponse, Long petId, String status) {
-        Assert.assertTrue(Objects.equals(orderResponse.id, petId) && orderResponse.status.equals(status));
+        Assert.assertTrue(orderResponse.petId.equals(petId) && orderResponse.status.equals(status));
+    }
+
+    @Step
+    public OrderResponse getOrderById(Integer orderId) {
+        return given().spec(requestSpecification)
+                .when()
+                .get("https://petstore.swagger.io/v2/store/order/"+orderId)
+                .then().statusCode(200).log().all().extract().response().body().as(OrderResponse.class);
+    }
+
+    @Step
+    public void checkOrderWasFoundRight(OrderResponse orderResponse, Integer petId, String status) {
+        Assert.assertTrue(orderResponse.petId.equals(petId) && orderResponse.status.equals(status));
     }
 
 }

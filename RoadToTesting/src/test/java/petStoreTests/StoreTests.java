@@ -1,6 +1,8 @@
 package petStoreTests;
 
 import base.ApiBaseTest;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import model.requestModel.petStoreRequests.Category;
 import model.requestModel.petStoreRequests.OrderRequest;
 import model.requestModel.petStoreRequests.PetRequest;
@@ -10,11 +12,13 @@ import model.responseModel.petStoreResponses.PetResponse;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-import java.util.Date;
 
+@Epic("Тесты сайта petStore")
+@Feature("Группа тестов направленная на Store")
 public class StoreTests extends ApiBaseTest {
 
     private static Long petId;
+
     @Test(priority = 1)
     public static void addNewPetTest() {
         Category category = new Category(0, "string");
@@ -43,4 +47,9 @@ public class StoreTests extends ApiBaseTest {
         PET_STORE_STEPS.checkOrderPlaced(orderResponse, orderRequest.petId, orderRequest.status);
     }
 
+    @Test(priority = 3)
+    public void findPurchaseOrderByIdTest() {
+        OrderResponse orderResponse = PET_STORE_STEPS.getOrderById(4);
+        PET_STORE_STEPS.checkOrderWasFoundRight(orderResponse, 11, "placed");
+    }
 }

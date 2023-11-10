@@ -1,6 +1,8 @@
 package petStoreTests;
 
 import base.ApiBaseTest;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import model.requestModel.petStoreRequests.Category;
 import model.requestModel.petStoreRequests.PetRequest;
 import model.requestModel.petStoreRequests.Tag;
@@ -11,6 +13,8 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+@Epic("Тесты сайта petStore")
+@Feature("Группа тестов направленная на Pet")
 public class PetTests extends ApiBaseTest {
 
     private static Long petId;
