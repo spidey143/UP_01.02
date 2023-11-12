@@ -10,6 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderRequest {
+    public Integer id;
     public Long petId;
     public Integer quantity;
     public String shipDate;

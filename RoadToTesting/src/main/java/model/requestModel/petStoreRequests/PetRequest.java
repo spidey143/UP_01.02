@@ -15,9 +15,4 @@ public class PetRequest {
     public ArrayList<String> photoUrls;
     public ArrayList<Tag> tags;
     public String status;
-
-    public PetRequest(String name, String status) {
-        this.name = name;
-        this.status = status;
-    }
 }

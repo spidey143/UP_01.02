@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Tag {
-    public int id;
+    public Integer id;
     public String name;
 }

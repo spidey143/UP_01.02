@@ -6,7 +6,7 @@ import io.qameta.allure.Feature;
 import model.requestModel.petStoreRequests.Category;
 import model.requestModel.petStoreRequests.PetRequest;
 import model.requestModel.petStoreRequests.Tag;
-import model.responseModel.petStoreResponses.ApiResponseModel;
+import model.responseModel.petStoreResponses.ApiResponse;
 import model.responseModel.petStoreResponses.PetResponse;
 import org.testng.annotations.Test;
 
@@ -21,7 +21,7 @@ public class PetTests extends ApiBaseTest {
 
     @Test(priority = 1)
     public static void addNewPetTest() {
-        Category category = new Category(0, "string");
+        Category category = new Category(143, "string");
         Tag tag = new Tag(0, "string");
         ArrayList<String> photoUrls = new ArrayList<>();
         photoUrls.add("string");
@@ -47,13 +47,13 @@ public class PetTests extends ApiBaseTest {
 
     @Test(priority = 3)
     public static void updatePetWithFormDataTest() {
-        ApiResponseModel response = PET_STORE_STEPS.postPetUpdate(petId,"1doggie-corgi-super1" , "sold");
+        ApiResponse response = PET_STORE_STEPS.postPetUpdate(petId,"1doggie-corgi-super1" , "sold");
         PET_STORE_STEPS.checkApiResponse(response, petId);
     }
 
     @Test(priority = 4)
     public static void deletePet () {
-        ApiResponseModel response = PET_STORE_STEPS.deletePet(petId);
+        ApiResponse response = PET_STORE_STEPS.deletePet(petId);
         PET_STORE_STEPS.checkApiResponse(response, petId);
     }
 
