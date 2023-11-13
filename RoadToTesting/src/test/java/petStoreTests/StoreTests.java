@@ -10,6 +10,7 @@ import model.requestModel.petStoreRequests.Tag;
 import model.responseModel.petStoreResponses.ApiResponse;
 import model.responseModel.petStoreResponses.OrderResponse;
 import model.responseModel.petStoreResponses.PetResponse;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -45,13 +46,14 @@ public class StoreTests extends ApiBaseTest {
                 );
         OrderResponse orderResponse = PET_STORE_STEPS.postOrderForPurchasingPet(orderRequest);
         orderId = orderResponse.id;
-        PET_STORE_STEPS.checkOrderPlaced(orderResponse, orderRequest.petId, orderRequest.status);
+        Assert.assertTrue(orderResponse.status.equals(orderRequest.status) &&
+                                    orderResponse.id.equals(orderRequest.id));
     }
 
     @Test(priority = 3)
     public void findPurchaseOrderByIdTest() {
         OrderResponse orderResponse = PET_STORE_STEPS.getOrderById(orderId);
-        PET_STORE_STEPS.checkOrderWasFoundRight(orderResponse, petId, "placed");
+        Assert.assertEquals(orderResponse.id, orderId);
     }
 
     @Test(priority = 4)

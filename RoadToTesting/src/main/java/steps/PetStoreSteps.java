@@ -47,11 +47,6 @@ public class PetStoreSteps {
     }
 
     @Step
-    public void checkPetsList(List<PetResponse> petResponseList) {
-        petResponseList.forEach(p -> Assert.assertTrue(p.id != 0 & !p.name.isEmpty()));
-    }
-
-    @Step
     public PetResponse getPetById(Long id) {
         return given().spec(requestSpecification)
                 .when()

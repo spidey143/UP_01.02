@@ -8,6 +8,7 @@ import model.requestModel.petStoreRequests.PetRequest;
 import model.requestModel.petStoreRequests.Tag;
 import model.responseModel.petStoreResponses.ApiResponse;
 import model.responseModel.petStoreResponses.PetResponse;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -30,31 +31,33 @@ public class PetTests extends ApiBaseTest {
         PetRequest petRequest = new PetRequest(category, "doggie-corgi-super", photoUrls, tags, "available");
         PetResponse petResponse = PET_STORE_STEPS.postPetAdd(petRequest);
         petId = petResponse.id;
-        PET_STORE_STEPS.checkPetAdded(petResponse);
+        Assert.assertTrue(petResponse.category.id.equals(petRequest.category.id)
+                && petResponse.name.equals(petRequest.name));
     }
 
     @Test(priority = 5)
     public static void findPetsByStatusTest() {
         List<PetResponse> petsList = PET_STORE_STEPS.getPetsByStatus("sold");
-        PET_STORE_STEPS.checkPetsList(petsList);
+        Assert.assertTrue(petsList.isEmpty());
+        petsList.forEach(p -> Assert.assertTrue(p.id != 0 & !p.name.isEmpty()));
     }
 
     @Test(priority = 2)
     public static void findPetByIdTest() {
         PetResponse petResponse = PET_STORE_STEPS.getPetById(petId);
-        PET_STORE_STEPS.checkPetWasFoundRight(petResponse,"doggie-corgi-super");
+        Assert.assertEquals(petResponse.name, "doggie-corgi-super");
     }
 
     @Test(priority = 3)
     public static void updatePetWithFormDataTest() {
         ApiResponse response = PET_STORE_STEPS.postPetUpdate(petId,"1doggie-corgi-super1" , "sold");
-        PET_STORE_STEPS.checkApiResponse(response, petId);
+        Assert.assertTrue(response.code == 200 && response.message.equals(petId.toString()));
     }
 
     @Test(priority = 4)
     public static void deletePet () {
         ApiResponse response = PET_STORE_STEPS.deletePet(petId);
-        PET_STORE_STEPS.checkApiResponse(response, petId);
+        Assert.assertTrue(response.code == 200 && response.message.equals(petId.toString()));
     }
 
 }
