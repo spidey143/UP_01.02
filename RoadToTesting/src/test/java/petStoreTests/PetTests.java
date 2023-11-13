@@ -38,7 +38,7 @@ public class PetTests extends ApiBaseTest {
     @Test(priority = 5)
     public static void findPetsByStatusTest() {
         List<PetResponse> petsList = PET_STORE_STEPS.getPetsByStatus("sold");
-        Assert.assertTrue(petsList.isEmpty());
+        Assert.assertFalse(petsList.isEmpty());
         petsList.forEach(p -> Assert.assertTrue(p.id != 0 & !p.name.isEmpty()));
     }
 

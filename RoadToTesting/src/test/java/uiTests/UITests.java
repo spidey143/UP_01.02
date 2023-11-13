@@ -1,3 +1,5 @@
+package uiTests;
+
 import base.UIBaseTest;
 import org.testng.annotations.Test;
 import pages.HomePage;

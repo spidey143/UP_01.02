@@ -21,7 +21,6 @@ import java.util.Map;
 public class StoreTests extends ApiBaseTest {
 
     private static Integer orderId;
-    private static Long petId;
 
     @Test(priority = 2)
     public void placeOrderTest() {
@@ -33,8 +32,6 @@ public class StoreTests extends ApiBaseTest {
         tags.add(tag);
         PetRequest petRequest = new PetRequest(category, "doggie-corgi-super", photoUrls, tags, "available");
         PetResponse petResponse = PET_STORE_STEPS.postPetAdd(petRequest);
-        petId = petResponse.id;
-        PET_STORE_STEPS.checkPetAdded(petResponse);
         OrderRequest orderRequest = new OrderRequest
                 (
                         5,
@@ -59,12 +56,15 @@ public class StoreTests extends ApiBaseTest {
     @Test(priority = 4)
     public void deleteOrderTest() {
         ApiResponse apiResponse = PET_STORE_STEPS.deleteOrderById(orderId);
-        PET_STORE_STEPS.checkOrderWasDeleted(apiResponse, orderId);
+        Assert.assertTrue(apiResponse.code == 200 && apiResponse.message.equals(orderId.toString()));
     }
 
     @Test(priority = 5)
     public void getPetInventoriesByStatusTest() {
         Map<String, Integer> inventory = PET_STORE_STEPS.getInventory();
-        PET_STORE_STEPS.checkInventory(inventory);
+        inventory.forEach((key, value) -> Assert.assertTrue(
+                inventory.containsKey("sold") || inventory.containsKey("available") ||
+                        inventory.containsKey("string") || inventory.containsKey("pending") ||
+                        inventory.containsKey("not available")));
     }
 }

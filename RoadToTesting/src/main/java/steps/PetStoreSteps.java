@@ -9,11 +9,8 @@ import model.responseModel.petStoreResponses.ApiResponse;
 import model.responseModel.petStoreResponses.OrderResponse;
 import model.responseModel.petStoreResponses.PetResponse;
 import model.responseModel.petStoreResponses.UserResponse;
-import org.checkerframework.checker.units.qual.A;
 import org.testng.Assert;
 
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -30,11 +27,6 @@ public class PetStoreSteps {
                 .post("https://petstore.swagger.io/v2/pet")
                 .then().statusCode(200).contentType(ContentType.JSON).log().all()
                 .extract().response().body().as(PetResponse.class);
-    }
-
-    @Step
-    public void checkPetAdded(PetResponse petResponse) {
-        Assert.assertTrue(petResponse.id != 0);
     }
 
     @Step
@@ -55,11 +47,6 @@ public class PetStoreSteps {
     }
 
     @Step
-    public void checkPetWasFoundRight(PetResponse petResponse, String expectedName) {
-        Assert.assertEquals(petResponse.name, expectedName);
-    }
-
-    @Step
     public ApiResponse postPetUpdate(Long id, String name, String status) {
         return given()
                 .contentType(ContentType.URLENC)
@@ -69,11 +56,6 @@ public class PetStoreSteps {
                 .post("https://petstore.swagger.io/v2/pet/" + id)
                 .then().log().all()
                 .extract().response().body().as(ApiResponse.class);
-    }
-
-    @Step
-    public void checkApiResponse(ApiResponse apiResponse, Long id) {
-        Assert.assertTrue(apiResponse.code == 200 && apiResponse.message.equals(String.valueOf(id)));
     }
 
     @Step
@@ -96,23 +78,11 @@ public class PetStoreSteps {
     }
 
     @Step
-    public void checkOrderPlaced(OrderResponse orderResponse, Long petId, String status) {
-        Assert.assertTrue(orderResponse.petId.equals(petId) && orderResponse.status.equals(status));
-    }
-
-    @Step
     public OrderResponse getOrderById(Integer orderId) {
         return given().spec(requestSpecification)
                 .when()
                 .get("https://petstore.swagger.io/v2/store/order/" + orderId)
                 .then().statusCode(200).log().all().extract().response().body().as(OrderResponse.class);
-    }
-
-    @Step
-    public void checkOrderWasFoundRight(OrderResponse orderResponse, Long petId, String status) {
-        Assert.assertTrue(
-                orderResponse.petId.equals(petId) && orderResponse.status.equals(status)
-        );
     }
 
     @Step
@@ -125,26 +95,11 @@ public class PetStoreSteps {
     }
 
     @Step
-    public void checkOrderWasDeleted(ApiResponse apiResponse, Integer orderId) {
-        Assert.assertTrue(
-                apiResponse.code == 200 && apiResponse.message.equals(String.valueOf(orderId))
-        );
-    }
-
-    @Step
     public Map<String, Integer> getInventory() {
         return given().spec(requestSpecification)
                 .when()
                 .get("https://petstore.swagger.io/v2/store/inventory")
                 .then().log().all().extract().response().body().jsonPath().getMap("");
-    }
-
-    @Step
-    public void checkInventory(Map<String, Integer> inventory) {
-        inventory.forEach((key, value) -> Assert.assertTrue(
-                inventory.containsKey("sold") || inventory.containsKey("available") ||
-                        inventory.containsKey("string") || inventory.containsKey("pending") ||
-                        inventory.containsKey("not available")));
     }
 
     @Step
@@ -178,22 +133,11 @@ public class PetStoreSteps {
     }
 
     @Step
-    public void checkUsersListApiResponse(ApiResponse apiResponse) {
-        Assert.assertTrue(apiResponse.code == 200 && apiResponse.message.equals("ok"));
-    }
-
-    @Step
     public UserResponse getUserByUserName(String username) {
         return given().spec(requestSpecification)
                 .when().log().all()
                 .get("https://petstore.swagger.io/v2/user/" + username)
                 .then().log().all().extract().response().body().as(UserResponse.class);
-    }
-
-    @Step
-    public void checkUserWasFoundRight(UserResponse userResponse, String username, String firstName, String lastName) {
-        Assert.assertTrue(userResponse.username.equals(username) &&
-                userResponse.firstName.equals(firstName) && userResponse.lastName.equals(lastName));
     }
 
     @Step
@@ -205,17 +149,13 @@ public class PetStoreSteps {
                 .then().log().all().extract().response().body().as(ApiResponse.class);
     }
 
+    @Step
     public ApiResponse deleteUser(String username) {
         return given().spec(requestSpecification)
                 .when().log().all()
                 .delete("https://petstore.swagger.io/v2/user/" + username)
                 .then().log().all()
                 .extract().response().body().as(ApiResponse.class);
-    }
-
-    @Step
-    public void checkUserIsDeleted(ApiResponse apiResponse, String username) {
-        Assert.assertTrue(apiResponse.code == 200 && apiResponse.message.equals(username));
     }
 
 
@@ -229,16 +169,11 @@ public class PetStoreSteps {
     }
 
     @Step
-    public void checkUserIsAuthenticated(ApiResponse apiResponse) {
-        Assert.assertTrue(apiResponse.code == 200 && apiResponse.message.contains("logged in user session"));
-    }
-
-    @Step
     public ApiResponse logoutUser() {
         return given().spec(requestSpecification)
-               .when().log().all()
-               .get("https://petstore.swagger.io/v2/user/logout")
-               .then().log().all()
-               .extract().response().body().as(ApiResponse.class);
+                .when().log().all()
+                .get("https://petstore.swagger.io/v2/user/logout")
+                .then().log().all()
+                .extract().response().body().as(ApiResponse.class);
     }
 }
