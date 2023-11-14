@@ -24,13 +24,10 @@ public class StoreTests extends ApiBaseTest {
 
     @Test(priority = 2)
     public void placeOrderTest() {
-        Category category = new Category(143, "string");
-        Tag tag = new Tag(0, "string");
-        ArrayList<String> photoUrls = new ArrayList<>();
-        photoUrls.add("string");
-        ArrayList<Tag> tags = new ArrayList<>();
-        tags.add(tag);
-        PetRequest petRequest = new PetRequest(category, "doggie-corgi-super", photoUrls, tags, "available");
+        PetRequest petRequest = new PetRequest(new Category(143, "string"),
+                "doggie-corgi-super", new ArrayList<>(), new ArrayList<>(), "available");
+        petRequest.tags.add(new Tag(0, "string"));
+        petRequest.photoUrls.add("string");
         PetResponse petResponse = PET_STORE_STEPS.postPetAdd(petRequest);
         OrderRequest orderRequest = new OrderRequest
                 (
@@ -44,7 +41,7 @@ public class StoreTests extends ApiBaseTest {
         OrderResponse orderResponse = PET_STORE_STEPS.postOrderForPurchasingPet(orderRequest);
         orderId = orderResponse.id;
         Assert.assertTrue(orderResponse.status.equals(orderRequest.status) &&
-                                    orderResponse.id.equals(orderRequest.id));
+                orderResponse.id.equals(orderRequest.id));
     }
 
     @Test(priority = 3)
