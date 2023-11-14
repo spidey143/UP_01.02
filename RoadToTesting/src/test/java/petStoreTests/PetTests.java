@@ -20,7 +20,7 @@ public class PetTests extends ApiBaseTest {
 
     private static Long petId;
 
-    @Test(priority = 1)
+    @Test
     public static void addNewPetTest() {
         Category category = new Category(143, "string");
         Tag tag = new Tag(0, "string");
@@ -35,27 +35,27 @@ public class PetTests extends ApiBaseTest {
                 && petResponse.name.equals(petRequest.name));
     }
 
-    @Test(priority = 5)
+    @Test
     public static void findPetsByStatusTest() {
         List<PetResponse> petsList = PET_STORE_STEPS.getPetsByStatus("sold");
         Assert.assertFalse(petsList.isEmpty());
         petsList.forEach(p -> Assert.assertTrue(p.id != 0 & !p.name.isEmpty()));
     }
 
-    @Test(priority = 2)
+    @Test
     public static void findPetByIdTest() {
         PetResponse petResponse = PET_STORE_STEPS.getPetById(petId);
         Assert.assertEquals(petResponse.name, "doggie-corgi-super");
     }
 
-    @Test(priority = 3)
+    @Test
     public static void updatePetWithFormDataTest() {
         ApiResponse response = PET_STORE_STEPS.postPetUpdate(petId,"1doggie-corgi-super1" , "sold");
         Assert.assertTrue(response.code == 200 && response.message.equals(petId.toString()));
     }
 
-    @Test(priority = 4)
-    public static void deletePet () {
+    @Test(dependsOnMethods = {"updatePetWithFormDataTest"})
+    public static void deletePetTest() {
         ApiResponse response = PET_STORE_STEPS.deletePet(petId);
         Assert.assertTrue(response.code == 200 && response.message.equals(petId.toString()));
     }

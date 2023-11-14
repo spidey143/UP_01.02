@@ -23,7 +23,7 @@ public class ResourceTests extends ApiBaseTest {
     @Test(testName = "GET Single Resource", description = "Получение ресурса")
     public static void getSingleResource() {
         ResourceResponse resource = REQRES_STEPS.getSingleResource(200);
-        Assert.assertTrue(resource.data.id!= 0 && !resource.data.name.equals("fuchsia rose"));
+        Assert.assertTrue(resource.data.id == 2 && resource.data.name.equals("fuchsia rose"));
     }
 
     @Test(testName = "GET Single Resource NOT FOUND", description = "Получение несуществующего ресурса")

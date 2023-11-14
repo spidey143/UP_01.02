@@ -14,8 +14,8 @@ import java.util.List;
 
 @Epic("Тесты сайта petStore")
 @Feature("Группа тестов направленная на User")
-public class UserTests extends ApiBaseTest {
-    @Test(priority = 1)
+public class PetStoreUserTests extends ApiBaseTest {
+    @Test
     public void createUserTest(){
         UserRequest userRequest = new UserRequest(143,
                 "darlingFF", "Danya", "Bekenev",
@@ -24,8 +24,8 @@ public class UserTests extends ApiBaseTest {
         Assert.assertTrue(apiResponse.code == 200 && apiResponse.message.equals(userRequest.id.toString()));
     }
 
-    @Test(priority = 2)
-    public void createListOfUsersWithInputArray(){
+    @Test
+    public void createListOfUsersWithInputArrayTest(){
         UserRequest[] usersList= new UserRequest[1];
         usersList[0] = new UserRequest(143,
                 "darlingFF", "Danya", "Bekenev",
@@ -34,8 +34,8 @@ public class UserTests extends ApiBaseTest {
         Assert.assertTrue(apiResponse.code == 200 && apiResponse.message.contains("ok"));
     }
 
-    @Test(priority = 3)
-    public void createListOfUsersWithInputList(){
+    @Test
+    public void createListOfUsersWithInputListTest(){
         List<UserRequest> usersList= new ArrayList<>();
         usersList.add(new UserRequest(143,
                 "darlingFF", "Danya", "Bekenev",
@@ -44,14 +44,14 @@ public class UserTests extends ApiBaseTest {
        Assert.assertTrue(apiResponse.code == 200 && apiResponse.message.contains("ok"));
     }
 
-    @Test(priority = 4)
+    @Test
     public void getUserByUserNameTest(){
         UserResponse userResponse = PET_STORE_STEPS.getUserByUserName("darlingFF");
         Assert.assertTrue(userResponse.username.equals("darlingFF") &&
                 userResponse.firstName.equals("Danya") && userResponse.lastName.equals("Bekenev"));
     }
 
-    @Test(priority = 5)
+    @Test
     public void updateUserTest(){
         UserRequest userUpdateRequest = new UserRequest(143,
                 "darlingFF", "1Danya1", "2Bekenev2",
@@ -60,19 +60,19 @@ public class UserTests extends ApiBaseTest {
         Assert.assertTrue(apiResponse.code == 200 && apiResponse.message.equals(userUpdateRequest.id.toString()));
     }
 
-    @Test(priority = 6)
+    @Test(dependsOnMethods = {"updateUserTest"})
     public void deleteUserTest(){
         ApiResponse apiResponse = PET_STORE_STEPS.deleteUser("darlingFF");
         Assert.assertTrue(apiResponse.code == 200 && apiResponse.message.equals("darlingFF"));
     }
 
-    @Test(priority = 7)
+    @Test
     public void userLogInTest(){
         ApiResponse apiResponse = PET_STORE_STEPS.authUser("darlingFF", "qwerty");
         Assert.assertTrue(apiResponse.code == 200 && apiResponse.message.contains("logged in user session"));
     }
 
-    @Test(priority = 8)
+    @Test
     public void userLogOutTest(){
         ApiResponse apiResponse = PET_STORE_STEPS.logoutUser();
         Assert.assertTrue(apiResponse.code == 200 && apiResponse.message.contains("ok"));
